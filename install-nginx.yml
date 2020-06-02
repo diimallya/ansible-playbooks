@@ -6,10 +6,20 @@
       yum: name=nginx state=present update_cache=true
       notify:
         - start nginx
-
-    - name: Upload default index.html for host
-      copy: src=/var/www/html/index.html dest=/usr/share/nginx/html/ mode=0644
+    - name: create index.html file
+      file:
+        name: /usr/share/nginx/html/index.html
+        state: touch
+    - name: add web content
+      lineinfile:
+        line: "<html> <h1> Hello World!! </h1></html>"
+        path: /usr/share/nginx/html/index.html
+      notify:
+        - start nginx      
+    
 
   handlers:
     - name: start nginx
       service: name=nginx state=present
+
+
