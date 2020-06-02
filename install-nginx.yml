@@ -20,6 +20,6 @@
 
   handlers:
     - name: start nginx
-      service: name=nginx state=present
+      service: name=nginx state=restarted
 
 
