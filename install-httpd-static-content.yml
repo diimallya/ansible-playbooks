@@ -15,7 +15,7 @@
         state: touch
     - name: add web content
       lineinfile:
-        line: "<html> <h1> Hello World!! </h1></html>"
+        line: "Hello World!!"
         path: /var/www/html/index.html
       notify:
         - restart httpd                 # A change in task yum will call the handler restart httpd

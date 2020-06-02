@@ -1,0 +1,12 @@
+---
+- name: This removes nginx
+  hosts: all
+  tasks:
+  - name: ensure nginx is stopped
+    service:
+      name: nginx 
+      state: stopped
+  - name: remove apache packages 
+    yum:
+      name: nginx
+      state: absent
