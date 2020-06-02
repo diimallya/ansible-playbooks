@@ -1,12 +1,27 @@
----
-- name: This sets up an httpd webserver
-  hosts: all
+--- # Bootstrap webservers
+- hosts: all
+  become: yes
+  gather_facts: yes
   tasks:
-  - name: Install apache packages 
-    yum:
-      name: httpd
-      state: present
-  - name: ensure httpd is running
-    service:
-      name: httpd 
-      state: started
+    - name: install latest httpd
+      yum:
+        name: httpd
+        state: latest
+      notify:
+        - restart httpd                  # A change in task yum will call the handler restart httpd
+    - name: create index.html file
+      file:
+        name: /var/www/html/index.html
+        state: touch
+    - name: add web content
+      lineinfile:
+        line: "Hello World!!"
+        path: /var/www/html/index.html
+      notify:
+        - restart httpd                 # A change in task yum will call the handler restart httpd
+  handlers:
+    - name: Attempt to restart httpd
+      service:
+        name: httpd
+        state: restarted
+      listen: restart httpd
