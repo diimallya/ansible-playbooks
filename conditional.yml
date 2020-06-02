@@ -1,0 +1,12 @@
+--- # ansible conditional example
+- hosts: all
+  vars:
+    target_file: /home/ansible/hostname
+  tasks:
+    - name: Gather file information
+      stat:
+        path: "{{ target_file }}"
+      register: hostname
+    - name: Rename hostname when found
+      command: cp "{{ target_file }}" /home/ansible/net-info
+      when: hostname.stat.exists

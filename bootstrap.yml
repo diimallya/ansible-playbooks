@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Edit /etc/host file
+      lineinfile:
+        path: /etc/hosts
+        line: "169.168.0.1 anzible.xyzcorp.com"   
+    - name: Install elinks
+      package:
+        name: elinks
+        state: latest
+    - name: Create user xyzcorp_audit
+      user:
+        name: xyzcorp_audit
+        state: present
