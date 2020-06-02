@@ -1,0 +1,8 @@
+  
+- name: Remove Tomcat Application server
+  hosts: all
+  tasks:
+    - name: Ensure tomcat is removed
+      yum:
+        name: tomcat
+        state: absent
