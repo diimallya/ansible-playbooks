@@ -1,0 +1,12 @@
+---
+- name: This removes haproxy
+  hosts: all
+  tasks:
+  - name: ensure haproxy is stopped
+    service:
+      name: haproxy 
+      state: stopped
+  - name: remove haproxy packages 
+    package:
+      name: haproxy
+      state: absent
