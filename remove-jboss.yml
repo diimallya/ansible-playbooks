@@ -1,0 +1,23 @@
+---
+- name: This removes jboss
+  hosts: all
+  tasks:
+  - name: ensure jboss is stopped
+    service:
+      name: jboss 
+      state: stopped
+
+  - name: Remove jboss
+      file:
+        path: /usr/share/jboss-as
+        state: absent
+
+  - name: remove user "jboss"
+      user:
+        name: jboss
+        state: absent
+
+  - name: remove group "jboss"
+      group:
+        name: jboss
+        state: absent
