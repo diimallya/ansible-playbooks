@@ -1,8 +1,8 @@
 ---
 # This playbook prints a simple debug message
 - name: Echo Hello World!
-  hosts: all
+  hosts: "{{ dm_host_name }}"
   tasks:
   - name: Print debug message
     debug:
-      msg: "Hello, world!"
+      msg: "Hello, world! {{ dm_color }}"
