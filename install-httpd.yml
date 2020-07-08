@@ -31,7 +31,6 @@
       unarchive:
         src: /tmp/staic.zip
         dest: /var/www/html/
-        remote_src: yes
       notify:
         - restart httpd   
 
