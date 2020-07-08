@@ -10,12 +10,17 @@
         state: latest
       notify:
         - restart httpd                  # A change in task yum will call the handler restart httpd
+    
+    - name: create index.html file
+      file:
+        name: /var/www/html/index.html
+        state: touch
 
     - name: Extract http package into webserver directory
-      unarchive:
-        src: https://github.com/diimallya/http-packages/blob/master/new-static.tar.gz
-        dest: /var/www/html/
-        remote_src: yes
+        get_url:
+          url: https://github.com/diimallya/http-packages/blob/master/static/index.html
+          dest: /var/www/html/index.html
+          mode: '0440'
       notify:
         - restart httpd                  # A change in task yum will call the handler restart httpd
 
