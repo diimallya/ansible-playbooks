@@ -11,11 +11,15 @@
       notify:
         - restart httpd                  # A change in task yum will call the handler restart httpd
 
-    - name: Download http package
-      unarchive:
-        src: https://github.com/diimallya/http-packages/blob/master/static.tgz
-        dest: /var/www/html/
-        remote_src: yes
+    - name: dDownload http package
+      get_url:
+        url: https://github.com/diimallya/http-packages/blob/master/static.tgz
+        dest: /tmp/static.tgz
+        mode: 0777
+
+    - name: Extract http package into webserver directory
+      shell: mkdir /var/www/html
+      shell: cp -r /tmp/static.tgz /var/www/html/
       notify:
         - restart httpd
 
