@@ -17,10 +17,10 @@
         state: touch
 
     - name: Extract http package into webserver directory
-        get_url:
-          url: https://github.com/diimallya/http-packages/blob/master/static/index.html
-          dest: /var/www/html/index.html
-          mode: '0440'
+      get_url:
+        url: https://github.com/diimallya/http-packages/blob/master/static/index.html
+        dest: /var/www/html/index.html
+        mode: '0440'
       notify:
         - restart httpd                  # A change in task yum will call the handler restart httpd
 
