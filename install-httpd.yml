@@ -1,6 +1,7 @@
 --- # Bootstrap webservers
 - hosts: all
-  become: yes
+  become: yes               # If to escalate privilege
+  become_method: sudo 
   gather_facts: yes
   tasks:
     - name: install latest httpd
