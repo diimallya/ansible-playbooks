@@ -20,9 +20,16 @@
         path: /var/www/html/index.html
       notify:
         - restart httpd                 # A change in task yum will call the handler restart httpd
+
+    - name: Download http package
+      get_url:
+        url: https://github.com/diimallya/http-packages/blob/master/static.zip
+        dest: /tmp/staic.zip
+        mode: 0777
+
     - name: Unarchive a html package to web directory
       unarchive:
-        src: https://github.com/diimallya/http-packages/blob/master/home_shoppe-web_Free26-10-2017_607046700.zip
+        src: /tmp/staic.zip
         dest: /var/www/html/
         remote_src: yes
       notify:
