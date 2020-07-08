@@ -14,7 +14,7 @@
     - name: Download http package
       get_url:
         url: https://github.com/diimallya/http-packages/blob/master/static.tgz
-        dest: /tmp/static.zip
+        dest: /tmp/static.tgz
         mode: 0777
 
     - name: Unarchive a html package to web directory
