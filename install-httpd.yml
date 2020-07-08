@@ -13,12 +13,12 @@
 
     - name: Download http package
       get_url:
-        url: https://github.com/diimallya/http-packages/blob/master/static.zip
+        url: https://github.com/diimallya/http-packages/blob/master/static.tgz
         dest: /tmp/static.zip
         mode: 0777
 
     - name: Unarchive a html package to web directory
-      command: sudo unzip /tmp/static.zip -d /var/www/html/
+      command:  tar xvzf /tmp/static.tgz -C /var/www/html/
       notify:
         - restart httpd
 
