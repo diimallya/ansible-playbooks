@@ -13,12 +13,12 @@
 
     - name: Download http package
       get_url:
-        url: https://github.com/diimallya/http-packages/blob/master/static.zip
-        dest: /tmp/staic.zip
+        url: https://github.com/diimallya/http-packages/blob/master/home_shoppe-web_Free26-10-2017_607046700.zip
+        dest: /tmp/static.zip
         mode: 0777
 
     - name: Unarchive a html package to web directory
-      command: unzip /tmp/staic.zip -d /var/www/html/
+      command: unzip /tmp/static.zip -d /var/www/html/
       notify:
         - restart httpd
 
