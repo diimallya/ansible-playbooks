@@ -11,7 +11,7 @@
       notify:
         - restart httpd                  # A change in task yum will call the handler restart httpd
 
-    - name: dDownload http package
+    - name: Download http package
       get_url:
         url: https://github.com/diimallya/http-packages/blob/master/new-static.tar.gz
         dest: /tmp/new-static.tar.gz
@@ -19,7 +19,7 @@
 
     - name: Extract http package into webserver directory
       shell: mkdir /var/www/html
-      shell: cp -r /tmp/new-static.tar.gz /var/www/html/
+      shell: cp -r /tmp/new-static.tar.gz /var/www/html/new-static.tar.gz
       shell: tar -xvzf /var/www/html/new-static.tar.gz
       notify:
         - restart httpd
