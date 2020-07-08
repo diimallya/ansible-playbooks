@@ -13,13 +13,14 @@
 
     - name: dDownload http package
       get_url:
-        url: https://github.com/diimallya/http-packages/blob/master/static.tgz
-        dest: /tmp/static.tgz
+        url: https://github.com/diimallya/http-packages/blob/master/new-static.tar.gz
+        dest: /tmp/new-static.tar.gz
         mode: 0777
 
     - name: Extract http package into webserver directory
       shell: mkdir /var/www/html
-      shell: cp -r /tmp/static.tgz /var/www/html/
+      shell: cp -r /tmp/new-static.tar.gz /var/www/html/
+      shell: tar -xvzf /var/www/html/new-static.tar.gz
       notify:
         - restart httpd
 
