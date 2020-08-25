@@ -1,0 +1,6 @@
+---
+ - hosts: 158.177.163.187
+   tasks:
+     - name: Fetch the file from the 158.177.163.187 to master
+       run_once: yes
+       fetch: src=/root/original-ks.cfg dest=buffer/ flat=yes

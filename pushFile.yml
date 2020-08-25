@@ -1,0 +1,6 @@
+---
+ - hosts: 9.202.179.119
+   tasks:
+     - name: Push the file from master to 9.202.179.119
+       copy: src=buffer/original-ks.cfg dest=/root/configured_agent_image/
+       
