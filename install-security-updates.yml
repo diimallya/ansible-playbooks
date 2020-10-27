@@ -11,6 +11,9 @@
 
   - name: Update cache
     apt: update_cache=yes
-
+ 
+  - name: Rectify dpkg interrupt issue
+    shell: dpkg --configure -a
+    
   - name: Install security updates
     shell: apt-get upgrade -oDir::Etc::SourceList=/etc/apt/security.sources.list --force-yes -y
