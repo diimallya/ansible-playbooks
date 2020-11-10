@@ -5,7 +5,7 @@
     tasks: 
       - name: Download the monitoring agent
         get_url:
-          url: "{{ src_image  }}"
+          url: "{{ src_image_file_to_download  }}"
           dest: "{{ src_images_dir }}"
           mode: 0777
           force: yes
