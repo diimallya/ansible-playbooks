@@ -6,6 +6,6 @@
       - name: Download the monitoring agent
         get_url:
           url: "{{ src_image  }}"
-          dest: "{{ dest_image }}"
+          dest: "{{ src_images_dir }}"
           mode: 0777
           force: yes
