@@ -1,0 +1,12 @@
+---
+- name: Configure the downloaded image.
+  hosts: all
+  tasks: 
+    - name: Extract the config pack.
+      unarchive: 
+        src: "{{ target_dir }}/{{ configpack_name }}"
+        dest: "{{ target_dir }}"
+        remote_src: yes
+    - name: Configure the downloaded image.
+      shell: "{{ target_dir }}/pre_config.sh -s {{ src_images_dir }} -d {{ dst_images_dir }} -e {{ target_dir }}/env.properties"
+      
