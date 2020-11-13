@@ -1,4 +1,3 @@
-
 ---
 - name: Install pre-req packages
   hosts: all
