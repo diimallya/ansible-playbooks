@@ -1,0 +1,25 @@
+
+---
+- name: Install pre-req packages
+  hosts: all
+  become: yes
+  vars:
+    packages_rh:
+      - bc
+      - libnsl
+      - zip
+    packages_debian:
+      - bc
+      - zip
+  tasks:
+    - name: Install pre-req package on Debian
+      apt:
+        name: "{{ packages_debian }}"
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install pre-req package on Redhat
+      yum:
+        name: "{{ packages_rh }}"
+        state: present
+      when: ansible_os_family == "RedHat"
