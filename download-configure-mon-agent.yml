@@ -1,0 +1,30 @@
+--- 
+  - name: Download the agent image and configure it.
+    hosts: all
+    gather_facts: false
+    vars:
+      src_images_dir: '$HOME/downloaded_image'
+      configpack_dir: '/tmp'
+      dst_images_dir: '$HOME/configured_image'
+      configpack_name: 'ibm-cloud-apm-agents-configpack.tar'
+    tasks: 
+      - name: Create required directories for downloading and configuring agent images.
+        file:
+          path: "{{ item }}"
+          state: directory
+        with_items:
+          - '$HOME/downloaded_image'
+          - '$HOME/configured_image'
+      - name: Download the monitoring agent image.
+        get_url:
+          url: "{{ src_image_file_to_download  }}"
+          dest: "{{ src_images_dir }}"
+          mode: 0777
+          force: yes
+      - name: Extract the config pack.
+        unarchive: 
+          src: "{{ configpack_dir }}/{{ configpack_name }}"
+          dest: "{{ configpack_dir }}"
+          remote_src: yes
+      - name: Configure the downloaded image.
+        shell: "{{ configpack_dir }}/pre_config.sh -s {{ src_images_dir }} -d {{ dst_images_dir }} -e {{ configpack_dir }}/env.properties"
